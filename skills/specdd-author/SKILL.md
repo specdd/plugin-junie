@@ -1,14 +1,14 @@
 ---
-name: specdd-explain
-description: Use when Junie needs to explain a SpecDD spec, target, behavior, or effective spec chain without editing it.
+name: specdd-author
+description: Use when Junie needs to author or revise SpecDD `.sdd` specs in an existing SpecDD project.
 license: Apache-2.0
 ---
 
-# SpecDD Explain
+# SpecDD Author
 
-Use this skill to explain SpecDD contracts to a human. Keep the explanation
-succinct and clear while including enough depth to understand the feature,
-module, workflow, or file governed by the spec.
+Use this skill to create or improve specs in an existing SpecDD project.
+If `.specdd/bootstrap.md` is missing, use `specdd-adopt` first.
+Do not change implementation files unless the user explicitly asks for implementation work too.
 
 ## Skill Scope
 
@@ -46,33 +46,22 @@ Do not reread an entire chain just because a workflow phase changed. Reopen the 
 
 ## Workflow
 
-1. Identify the requested spec, target path, feature, behavior, or changed file.
-2. Ensure the active bootstrap chain and applicable spec chain are known.
-3. When useful and available, consider consulting the `specdd-cli` skill for CLI-assisted spec discovery; explain from exact specs when exact contract text matters, not from CLI summaries alone.
-4. Read or reread explicit `References` only when they materially affect the explanation.
-5. Explain what the contract means in plain language, not line by line.
-6. Separate direct spec requirements from reasonable inference, missing context, and underspecified behavior.
+1. Ensure existing ancestor specs for the target area are known before adding new specs; reread the nearest relevant spec when exact wording matters.
+2. Identify the smallest useful spec boundary for the requested authoring work.
+3. When useful and available, consider consulting the `specdd-cli` skill for CLI-assisted spec discovery or linting; read or reread relevant governing specs directly when exact contract text is needed.
+4. Treat the user's explicit request as target scope, then create or edit `.sdd` files only inside authority granted by the active spec chain.
+5. Keep specs short, local, behavioral, and constraint-oriented.
 
-## Explanation Rules
+## Authoring Rules
 
-- Explain the purpose, scope, ownership, allowed changes, important behavior, boundaries, dependencies, scenarios,
-  examples, tasks, and completion criteria that matter to the request.
-- Preserve `Must`, `Must not`, `Forbids`, `Depends on`, public contracts, and write authority instead of softening them.
-- Keep framework mechanics brief unless the user asks how SpecDD resolution works.
-- Do not invent behavior, guarantees, workflows, or user stories beyond the active specs.
-- Do not edit files unless the user explicitly asks for a spec or implementation change.
-- If the user asks about one spec only, avoid expanding into sibling specs unless the active spec references them or
-  they are needed to avoid a misleading explanation.
+- Prefer a root or nearest-area spec before adding narrow child specs.
+- Use path-based ownership and explicit `References`; do not imply authority from similar names or nearby files.
+- Include only sections that add useful local authority, constraints, behavior, tasks, or context.
+- Use `Can modify` or `Owns` to make write authority discoverable.
+- Do not copy the full SpecDD framework rules into project specs.
+- Do not turn uncertain observations into durable contracts.
+- If write authority, ownership, public behavior, or security scope is unclear, stop and ask.
 
-## Output
+## Reporting
 
-Prefer short sections such as:
-
-- What this is
-- Scope
-- Behavior
-- Boundaries
-- Open or unclear points
-
-Use prose or compact bullets. Quote sparingly. When something is inferred rather
-than specified, label it as an inference.
+Report the bootstrap files and specs used, specs created or changed, intended governing scope, and any unresolved authoring decisions.

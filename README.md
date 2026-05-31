@@ -18,6 +18,8 @@ Alternatively, install each skill with GitHub CLI source tracking:
 
 ```bash
 gh skill install specdd/plugin-junie specdd-adopt --agent junie --scope user
+gh skill install specdd/plugin-junie specdd-author --agent junie --scope user
+gh skill install specdd/plugin-junie specdd-cli --agent junie --scope user
 gh skill install specdd/plugin-junie specdd-debug --agent junie --scope user
 gh skill install specdd/plugin-junie specdd-do --agent junie --scope user
 gh skill install specdd/plugin-junie specdd-docs --agent junie --scope user
@@ -41,7 +43,8 @@ Learn more about SpecDD at https://specdd.ai.
 The skills help Junie read a target project's active `.specdd/bootstrap.md`
 chain, resolve local spec authority, and work through orientation, explanation,
 planning, implementation, review, testing, tracing, documentation, refactoring,
-debugging, and risk assessment.
+debugging, risk assessment, SpecDD adoption, spec authoring, and CLI-assisted
+SpecDD work.
 
 This repository is generated automatically from the SpecDD agent plugins source
 repository:
